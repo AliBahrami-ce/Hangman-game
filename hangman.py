@@ -9,9 +9,6 @@ word_bank = [
     "mountain", "internet", "storm", "guitar", "lion", "panda", "treasure", "engine",
     "river", "satellite", "ship", "sandwich", "shark", "planet", "camera", "bridge"
 ]
-# word_bank = [
-#     "python"
-# ]
 
 note = '''
 -> Note:

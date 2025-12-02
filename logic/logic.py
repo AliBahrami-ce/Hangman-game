@@ -76,8 +76,4 @@ class logic():
 
         for index, item in enumerate(self.results, start=1):
             writer.writerow([index, item[0], item[1]])
-
             
-# p = logic()
-
-# print(p.win('c' ,'ali', 4))
