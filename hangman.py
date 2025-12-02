@@ -2,16 +2,16 @@ import logic.logic as lg
 import random
 import os
 
-# word_bank = [
-#     "python", "jungle", "pizza", "robot", "galaxy", "tiger", "island", "coffee",
-#     "rocket", "castle", "banana", "forest", "keyboard", "dragon", "whale", "piano",
-#     "desert", "monitor", "ocean", "cookie", "eagle", "volcano", "battery", "wizard",
-#     "mountain", "internet", "storm", "guitar", "lion", "panda", "treasure", "engine",
-#     "river", "satellite", "ship", "sandwich", "shark", "planet", "camera", "bridge"
-# ]
 word_bank = [
-    "python"
+    "python", "jungle", "pizza", "robot", "galaxy", "tiger", "island", "coffee",
+    "rocket", "castle", "banana", "forest", "keyboard", "dragon", "whale", "piano",
+    "desert", "monitor", "ocean", "cookie", "eagle", "volcano", "battery", "wizard",
+    "mountain", "internet", "storm", "guitar", "lion", "panda", "treasure", "engine",
+    "river", "satellite", "ship", "sandwich", "shark", "planet", "camera", "bridge"
 ]
+# word_bank = [
+#     "python"
+# ]
 
 note = '''
 -> Note:
@@ -25,6 +25,8 @@ Welcome, mighty letter wizard!
 A word is hiding. A stickman is panicking.
 Try not to destroy his day, okay?
 '''
+
+game_results = []
 
 def clear_screan():
     if os.name == 'nt':
@@ -59,15 +61,17 @@ def menu():
                 if choice == 1:
                     game(choice)
                 elif choice == 2:
-                    pass
+                    save_results(choice)
                 else:
                     break
                 
             else:
                 print('Enter number between 1 to 3...')
+                press_enter()
                 
         except ValueError:
             print('Enter NUMBER...')
+            press_enter()
 
 def game(choice):
     clear_screan()
@@ -107,6 +111,7 @@ def game(choice):
             current_state = word_update(game_word, guess, current_state)
             word = [current_state]
             if word[0] == game_word:
+                game_results.append([game_word, 'W'])
                 clear_screan()
                 print('Word : ', word[0])
                 print('-> YOU WON!\nStickman lives another day!\nHe says “thanks” (or he would, if he had a mouth)')
@@ -119,6 +124,7 @@ def game(choice):
             print(lg.hangman_ascii[count])
             
         if count == 6:
+            game_results.append([game_word, 'L'])
             print('-> Welp… he\'s dead now.\nHope you\'re proud of yourself')
             print('TRY AGAIN...')
             press_enter()
@@ -128,5 +134,12 @@ def game(choice):
         clear_screan()
         print(' '.join(word[0]))
     
+def save_results(choice):
+    clear_screan()
+    game_logic = lg.logic(game_results)
+    game_logic.save_results()
+    print('Saved.')
+    press_enter()
+    
 if __name__ == '__main__':
-    menu()    
+    menu()
