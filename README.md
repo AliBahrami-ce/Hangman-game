@@ -44,12 +44,12 @@ Hangman Game/
 ## 🚀 How to Run
 
 ### 1. Clone the repository
-```
+```bash
 git clone https://github.com/AliBahrami-ce/Hangman-game.git
 cd Hangman-game
 ```
 ### 2. Run the game
-```
+```bash
 python main.py
 ```
 ## 🎮 How the Game Works
